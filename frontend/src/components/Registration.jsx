@@ -8,7 +8,7 @@ function Registration() {
     const [userName, setUserName] = useState('')
     const [loading, setLoading] = useState(false)
 
-    // const notify = () => toast("Registration Successful");
+     const notify = () => toast("Registration Successful");
 
     const handleSubmit = (e) => {
         setLoading(true)

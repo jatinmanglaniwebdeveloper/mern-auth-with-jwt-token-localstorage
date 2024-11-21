@@ -3,7 +3,9 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv').config();
 
+
 const userRoute = require('./routes/userRoutes')
+const leadRoute = require("./routes/leadsRoutes")
 
 const app = express();
 
@@ -14,12 +16,17 @@ app.use(cors({
     credentials: true
 }))
 
+app.use(cors({
+    origin: true,
+    credentials: true
+}))
 
 app.get('/', (req, res) => {
     res.send("Server is running..")
 })
 
 app.use('/user', userRoute)
+app.use('/lead', leadRoute)
 
 mongoose.connect(process.env.DATABASE_URL)
     .then(() => console.log("DB connected successfully"))

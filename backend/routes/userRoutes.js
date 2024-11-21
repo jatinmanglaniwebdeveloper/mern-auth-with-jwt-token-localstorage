@@ -3,7 +3,7 @@ const router = express.Router()
 const User = require('../modal/Users')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
-//Register
+
 
 const secreteKey = "swer&*&^#*&^@HJHjsdhfksdfhskfhw9853734598374";
 
@@ -26,7 +26,7 @@ router.post('/register', async (req, res) => {
     }
 })
 
-//Login
+
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -39,17 +39,18 @@ router.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign({ id: user._id, email: user.email }, secreteKey, { expiresIn: '1hr' })
-
+        
+       
         return res.status(201).json({ status: true, message: "Login successful", token: token })
     } catch (error) {
         return res.status(400).json({ status: false, message: "Something went wrong", error: error.message })
     }
 })
 
-//Profile
 router.post('/profile', async (req, res) => {
     try {
-        const token = req.headers?.authorization?.split(' ')[1];
+       const token = req.headers?.authorization?.split(' ')[1];
+
         if (!token) return res.status(400).json({ status: false, message: "Access Denied" })
 
         jwt.verify(token, secreteKey, async (err, decode) => {

@@ -13,7 +13,9 @@ function Header() {
             <Link to="/" >Home</Link>
             <Link to="/login" >Login</Link>
             <Link to="/profile" >Profile</Link>
+            <Link to="/view" >Dashboard</Link>
             <Link to="/register" >Register</Link>
+            <Link to="/leads/new" >Create Lead</Link>
             <button onClick={handleLogout} >Log Out</button>
 
         </div>
